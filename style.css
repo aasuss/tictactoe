@@ -1,0 +1,81 @@
+body {
+  background-image: url("https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700440041.jpg");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: rgb(47, 168, 58);
+}
+.bold {
+  font-weight: 900;
+}
+
+.pointer:hover {
+  background-color: grey;
+}
+
+.pointer {
+  cursor: pointer;
+  margin: 0px;
+  margin-top: 4px;
+  border: 0.5px solid black;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  display: inline-table;
+  padding: 10px;
+  font-size: 35px;
+  color: black;
+}
+.tab {
+  position: relative;
+  font-size: 25px;
+}
+.editst2 {
+  position: sticky;
+  top: 400px;
+  right: 800px;
+  font-size: 25px;
+}
+.editst {
+  position: absolute;
+  top: 483px;
+  left: 600px;
+  font-size: 25px;
+}
+.editn1 {
+  position: sticky;
+  top: 100px;
+  left: 8px;
+  font-size: 25px;
+  color: rgb(47, 168, 58);
+}
+.editn2 {
+  position: absolute;
+  top: 155px;
+  left: 595px;
+  font-size: 25px;
+  color: rgb(47, 168, 58);
+}
+.names {
+  position: absolute;
+  top: 154px;
+  left: 75px;
+  font-size: 25px;
+  color: white;
+}
+.names2 {
+  position: absolute;
+  top: 154px;
+  left: 670px;
+  font-size: 25px;
+  color: white;
+}
+.id {
+  position: absolute;
+  top: 190px;
+  right: 115px;
+  font-size: 15px;
+  color: rgb(36, 153, 141);
+  font-style: italic;
+}

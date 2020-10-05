@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+	<link rel="stylesheet" href="./style.css">
+	<title>Tic Tac Toe</title>
+</head>
+
+<body>
+	<div ng-app="">
+		<h1 style="text-align: center;">Welcome TO Tic-Tac-Toe</h1>
+		<figure><img src="https://cdn3.iconfinder.com/data/icons/business-set-1-8/128/a-17-512.png"
+				style="float:right;width:200px;height:130px;" alt="Trulli">
+			<figcaption class="id">RENDEZZ</figcaption>
+		</figure><br />
+		<pre class="tab"> First Player<span style="margin-left: 16em;" > Second Player</pre>
+		<p class="editn1">Hello </p>
+		<p class="names">{{name1}}</p>
+		<p class="editn2">Hello </p>
+		<p class="names2">{{name2}}</p>
+		<pre
+			class="tab">Name : <input type="text" ng-model="name1" id="p1" placeholder="Enter your name"><span style="margin-left: 13em;" > Name : <input type="text" ng-model="name2" id="p2" placeholder="Enter name here"></span></pre>
+		<span id="0" class="pointer">-</span>
+		<span id="1" class="pointer">-</span>
+		<span id="2" class="pointer">-</span><span style="margin-left: 26em;"></span><span id="11"
+			class="pointer">-</span>
+		<span id="12" class="pointer">-</span>
+		<span id="13" class="pointer">-</span> <br />
+		<span id="3" class="pointer">-</span>
+		<span id="4" class="pointer">-</span>
+		<span id="5" class="pointer">-</span><span style="margin-left: 26em;"></span><span id="14"
+			class="pointer">-</span>
+		<span id="15" class="pointer">-</span>
+		<span id="16" class="pointer">-</span> <br />
+		<span id="6" class="pointer">-</span>
+		<span id="7" class="pointer">-</span>
+		<span id="8" class="pointer">-</span><span style="margin-left: 26em;"></span><span id="17"
+			class="pointer">-</span>
+		<span id="18" class="pointer">-</span>
+		<span id="19" class="pointer">-</span>
+		<p id="status" class="editst2">Turn : </p>
+		<p id="status2" class="editst">Turn : </p><br />
+		<button id="reset">Reset</button><span style="margin-left: 34em;"></span><button id="reset2">Reset</button>
+		<br />
+		<script type="text/javascript" src="TicTacToe.js"></script>
+		<script type="text/javascript" src="connection.js"></script>
+</body>
+
+</html>
