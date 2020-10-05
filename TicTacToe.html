@@ -1,51 +1,179 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Tic Tac Toe</title>
+	</head>
+	<style>	
+	body {font-family: Arial, Helvetica, sans-serif;}
+	.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
 
-<head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
-	<link rel="stylesheet" href="./style.css">
-	<title>Tic Tac Toe</title>
-</head>
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+.close {
+  color: white;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+}
 
-<body>
-	<div ng-app="">
-		<h1 style="text-align: center;">Welcome TO Tic-Tac-Toe</h1>
-		<figure><img src="https://cdn3.iconfinder.com/data/icons/business-set-1-8/128/a-17-512.png"
-				style="float:right;width:200px;height:130px;" alt="Trulli">
-			<figcaption class="id">RENDEZZ</figcaption>
-		</figure><br />
-		<pre class="tab"> First Player<span style="margin-left: 16em;" > Second Player</pre>
-		<p class="editn1">Hello </p>
-		<p class="names">{{name1}}</p>
-		<p class="editn2">Hello </p>
-		<p class="names2">{{name2}}</p>
-		<pre
-			class="tab">Name : <input type="text" ng-model="name1" id="p1" placeholder="Enter your name"><span style="margin-left: 13em;" > Name : <input type="text" ng-model="name2" id="p2" placeholder="Enter name here"></span></pre>
-		<span id="0" class="pointer">-</span>
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+body  {
+  background-image: url("https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700440041.jpg");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: rgb(47, 168, 58);
+
+}
+	.bold {
+		font-weight:900;
+	}
+
+	.pointer:hover {
+		background-color:grey;
+	}
+
+	.pointer {
+		cursor: pointer;
+		margin : 0px;
+		margin-top: 4px;
+		border: 0.5px solid black;
+		background-color: rgb(255, 255, 255);
+		text-align: center;
+		width: 35px;
+		height: 35px;
+		display: inline-table;
+		padding: 35px;
+		font-size: 35px;
+		color:black;
+	}
+	.tab {
+		position: relative;
+		font-size: 25px;
+	}
+	.editst{
+		position: absolute;
+		top: 580px;
+ 	    left: 570px;
+		 font-size: 30px;
+	}
+	.editn1{
+		 font-size: 25px;
+		 color: rgb(255, 255, 255);
+	}
+	.btn
+	{
+		font-size: 25px;
+		background-color: #4CAF50;
+	}
+	.names{
+		position: absolute;
+		top: 154px;
+ 	    left: 75px;
+		 font-size: 25px;
+		color:white
+	}
+	.id{
+		position: absolute;
+		top: 250px;
+ 	    right: 115px;
+		 font-size: 15px;
+		 color: rgb(36, 153, 141);
+		 font-style:italic;
+	}
+	.head{
+		font-size: 55px;
+	}
+	</style>
+	<body>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>		<p class="editn1">Hello </p></h2>
+    </div>
+    <div class="modal-body">
+		<pre class="tab">Name : <input type="text" ng-model="name1" id="p1" placeholder="Enter your name"></pre>
+    </div>
+    <div class="modal-footer">
+      <h3>ALL THE BEST!!</h3>
+    </div>
+  </div>
+
+</div>
+		<div ng-app="">
+			<h1 style="text-align: center;" class="head">Welcome TO Tic-Tac-Toe</h1>
+		<figure><img src="https://cdn3.iconfinder.com/data/icons/business-set-1-8/128/a-17-512.png" style="float:right;width:200px;height:130px;" alt="Trulli" >
+			<figcaption class="id">RENDEZZ</figcaption></figure>
+		<!-- <p class="editn1">Hello </p><p class="names">{{name1}}</p>
+		<pre class="tab">Name : <input type="text" ng-model="name1" id="p1" placeholder="Enter your name"></pre>		 -->
+	    <span style="margin-left: 35em;" ></span><span id="0" class="pointer">-</span>  
 		<span id="1" class="pointer">-</span>
-		<span id="2" class="pointer">-</span><span style="margin-left: 26em;"></span><span id="11"
-			class="pointer">-</span>
-		<span id="12" class="pointer">-</span>
-		<span id="13" class="pointer">-</span> <br />
-		<span id="3" class="pointer">-</span>
+		<span id="2" class="pointer">-</span> <br />
+		<span style="margin-left: 35em;" ></span><span id="3" class="pointer">-</span>
 		<span id="4" class="pointer">-</span>
-		<span id="5" class="pointer">-</span><span style="margin-left: 26em;"></span><span id="14"
-			class="pointer">-</span>
-		<span id="15" class="pointer">-</span>
-		<span id="16" class="pointer">-</span> <br />
-		<span id="6" class="pointer">-</span>
+		<span id="5" class="pointer">-</span><br />
+		<span style="margin-left: 35em;" ></span><span id="6" class="pointer">-</span>
 		<span id="7" class="pointer">-</span>
-		<span id="8" class="pointer">-</span><span style="margin-left: 26em;"></span><span id="17"
-			class="pointer">-</span>
-		<span id="18" class="pointer">-</span>
-		<span id="19" class="pointer">-</span>
-		<p id="status" class="editst2">Turn : </p>
-		<p id="status2" class="editst">Turn : </p><br />
-		<button id="reset">Reset</button><span style="margin-left: 34em;"></span><button id="reset2">Reset</button>
+		<span id="8" class="pointer">-</span>
+		<p id="status" class="editst">Turn : </p><br/><br /><br />
+		<span style="margin-left: 35em;" ><button id="reset" class="btn">Reset</button>
 		<br />
-		<script type="text/javascript" src="TicTacToe.js"></script>
-		<script type="text/javascript" src="connection.js"></script>
-</body>
-
+	</body>
+	<script type="text/javascript" src="TicTacToe.js"></script>
 </html>
