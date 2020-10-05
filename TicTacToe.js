@@ -1,82 +1,64 @@
 window.onload = ticTacToe;
 function ticTacToe () 
 {
-	var player1Turn = 2;
-	var turn = true; 
-	var gridx = [false, false, false, false, false, false, false, false, false];  
-	var grido = [false, false, false, false, false, false, false, false, false];         
-	var tieDetectorGrid = [false, false, false, false, false, false, false, false, false] 
+	var turn = 1;
+	var gridx = [0, 0, 0, 0, 0, 0, 0, 0, 0];  
+	var grido = [0, 0, 0, 0, 0, 0, 0, 0, 0];         
+	var tieDetectorGrid = [0, 0, 0, 0, 0, 0, 0, 0, 0] 
 
 	function status (toSet) 
 	{
 		document.getElementById("status").innerHTML=toSet;
-		document.getElementById("status2").innerHTML=toSet;
 	};
 
 	function setCellProperties (id) 
 	{
 		var cellId = id;
 		var cell = document.getElementById(cellId);
-		if(cellId<10)
-			var cello = document.getElementById(cellId+11);
-		else
-			var cello = document.getElementById(cellId-11);
-		cell.unWritten = true;   
-		cello.unWritten= true;                 
+		cell.unWritten = 1;                    
 		cell.onclick = function () 
-		{           
-			player1Turn++;                                  
-			cellClick(cellId, cell, cello);           
-			var gameOver = false;                     
-			gameOver = checkWin(gridx, p1.value+" (Player 1)");
-			if(!gameOver) gameOver = checkWin(grido, p2.value+" (Player 2)");
+		{                                            
+			cellClick(cellId, cell);           
+			var gameOver = 0;                     
+			gameOver = checkWin(gridx, " (Player 1)");
+			if(!gameOver) gameOver = checkWin(grido, " (Player 2)");
 			if(!gameOver) checkTie();                 
 		};
 	};
 	for (var i=0;i<9;i++) 
 	{
-		if(player1Turn%2==0)
-			setCellProperties(i); 
+		setCellProperties(i); 
 	}
-	for (var i=11;i<20;i++) 
-	{
-		if(!player1Turn%2==0)
-			setCellProperties(i); 
-	}
-	function cellClick (cellId, cell, cello) 
+	function cellClick (cellId, cell) 
 	{
 		if (turn) 
 		{                                //Checks if X turn or not.
 			if (cell.unWritten) 
 			{                            //Checks if cell can be written to.
 				cell.innerHTML="x";
-				cello.innerHTML="x";
-				turn=false;              //It is now O's turn.
-				status("Turn : "+p2.value) && status2("Turn : "+p2.value);
+				turn=0;              //It is now O's turn.
+				status("Turn : "+p1.value);
 				cell.unWritten=undefined;
-				cello.unWritten=undefined;
-				gridx[cellId]=true;
-				grido[cellId]=false;
-				tieDetectorGrid[cellId]=true;
-			}
+				gridx[cellId]=1;
+				grido[cellId]=0;
+				tieDetectorGrid[cellId]=1;
+			}}
 
-		} else if (cell.unWritten) 
+		 else if (cell.unWritten) 
 		{                              //Checks if cell can be written to.
 			cell.innerHTML="o";
-			cello.innerHTML="o";
-			turn=true;                 //It is now X's turn.
-			status("Turn : "+p1.value) && status2("Turn : "+p1.value);
+			turn=1;                 //It is now X's turn.
+			status("Turn : "+p1.value);
 			cell.unWritten=undefined;
-			cello.unWritten=undefined;
-			grido[cellId]=true;
-			gridx[cellId]=false;
-			tieDetectorGrid[cellId]=true;
+			grido[cellId]=1;
+			gridx[cellId]=0;
+			tieDetectorGrid[cellId]=1;
 		}
 	}
 
 	function checkWin (gridToCheck, who) 
 	{	
-		var gameOver = false;
+		var gameOver = 0;
 
 		gameOver = checkCombo(0, 1, 2, who);
 		if(!gameOver) gameOver = checkCombo(3, 4, 5, who);
@@ -87,38 +69,24 @@ function ticTacToe ()
 		if(!gameOver) gameOver = checkCombo(0, 4, 8, who);
 		if(!gameOver) gameOver = checkCombo(2, 4, 6, who);
 
-		gameOver = checkCombo(11, 12, 13, who);
-		if(!gameOver) gameOver = checkCombo(14, 15, 16, who);
-		if(!gameOver) gameOver = checkCombo(17, 18, 19, who);
-		if(!gameOver) gameOver = checkCombo(11, 14, 17, who);
-		if(!gameOver) gameOver = checkCombo(12, 15, 18, who);
-		if(!gameOver) gameOver = checkCombo(13, 16, 19, who);
-		if(!gameOver) gameOver = checkCombo(11, 15, 19, who);
-		if(!gameOver) gameOver = checkCombo(13, 15, 17, who);
-
 		return gameOver;
 
 		function checkCombo (cell1, cell2, cell3, who) {
-			if(gridToCheck[cell1] === true && gridToCheck[cell2] === true && gridToCheck[cell3] === true) {
+			if(gridToCheck[cell1] === 1 && gridToCheck[cell2] === 1 && gridToCheck[cell3] === 1) {
 				
-				status(who + " won!") && status2(who + " won!");
+				status(who + " won!");
 				writeAll(undefined);
 				bold([cell1, cell2, cell3]);
-				return true;
+				return 1;
 			}
 		};
 	};
 
 	function checkTie () 
 	{
-		if(tieDetectorGrid[0] === true && tieDetectorGrid[1] === true && tieDetectorGrid[2] === true && tieDetectorGrid[3] === true && tieDetectorGrid[4] === true && tieDetectorGrid[5] === true && tieDetectorGrid[6] === true && tieDetectorGrid[7] === true && tieDetectorGrid[8] === true) { //Checks if board is full
+		if(tieDetectorGrid[0] === 1 && tieDetectorGrid[1] === 1 && tieDetectorGrid[2] === 1 && tieDetectorGrid[3] === 1 && tieDetectorGrid[4] === 1 && tieDetectorGrid[5] === 1 && tieDetectorGrid[6] === 1 && tieDetectorGrid[7] === 1 && tieDetectorGrid[8] === 1) { //Checks if board is full
 
-			status("Draw") && status2("Draw");
-			writeAll(undefined);
-		}
-		if(tieDetectorGrid[11] === true && tieDetectorGrid[12] === true && tieDetectorGrid[13] === true && tieDetectorGrid[14] === true && tieDetectorGrid[15] === true && tieDetectorGrid[16] === true && tieDetectorGrid[17] === true && tieDetectorGrid[18] === true && tieDetectorGrid[19] === true) { //Checks if board is full
-
-			status("Draw") && status2("Draw");
+			status("Draw");
 			writeAll(undefined);
 		}
 	};
@@ -129,10 +97,6 @@ function ticTacToe ()
 
 			document.getElementById(i.toString()).unWritten=bool;
 		}
-		for(var i = 11; i<20; i++) {
-
-			document.getElementById(i.toString()).unWritten=bool;
-		}
 	};
 	function bold (toBold) 
 	{
@@ -140,64 +104,21 @@ function ticTacToe ()
 
 			document.getElementById(toBold[i].toString()).classList.add("bold");
 		}
-		for(var i = 11; i<14; i++) {
-
-			document.getElementById(toBold[i].toString()).classList.add("bold");
-		}
 	};
 	document.getElementById("reset").onclick  = function () 
 	{
-		writeAll(true);
+		writeAll(1);
 		status("Turn : "+p1.value);
-		turn=true;
-		gridx=[false, false, false, false, false, false, false, false, false];
-		grido=[false, false, false, false, false, false, false, false, false];
-		tieDetectorGrid=[false, false, false, false, false, false, false, false, false];
+		turn=1;
+		gridx=[0, 0, 0, 0, 0, 0, 0, 0, 0];
+		grido=[0, 0, 0, 0, 0, 0, 0, 0, 0];
+		tieDetectorGrid=[0, 0, 0, 0, 0, 0, 0, 0, 0];
 		for(var i = 0; i<9; i++) 
 		{
 
 			document.getElementById(i.toString()).classList.remove("bold");
 		}
-		for(var i = 11; i<20; i++) 
-		{
-
-			document.getElementById(i.toString()).classList.remove("bold");
-		}
 		for(var i = 0; i<9; i++) 
-		{
-
-			document.getElementById(i.toString()).innerHTML="-";
-		}
-		for(var i = 11; i<20; i++) 
-		{
-
-			document.getElementById(i.toString()).innerHTML="-";
-		}
-	};
-	document.getElementById("reset2").onclick  = function () 
-	{
-		writeAll(true);
-		status("Turn : "+p1.value);
-		turn=true;
-		gridx=[false, false, false, false, false, false, false, false, false];
-		grido=[false, false, false, false, false, false, false, false, false];
-		tieDetectorGrid=[false, false, false, false, false, false, false, false, false];
-		for(var i = 0; i<9; i++) 
-		{
-
-			document.getElementById(i.toString()).classList.remove("bold");
-		}
-		for(var i = 11; i<20; i++) 
-		{
-
-			document.getElementById(i.toString()).classList.remove("bold");
-		}
-		for(var i = 0; i<9; i++) 
-		{
-
-			document.getElementById(i.toString()).innerHTML="-";
-		}
-		for(var i = 11; i<20; i++) 
 		{
 
 			document.getElementById(i.toString()).innerHTML="-";
