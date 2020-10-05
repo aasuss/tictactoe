@@ -1,6 +1,17 @@
 window.onload = ticTacToe;
 function ticTacToe () 
 {
+	var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+  modal.style.display = "block";
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 	var turn = 1;
 	var gridx = [0, 0, 0, 0, 0, 0, 0, 0, 0];  
 	var grido = [0, 0, 0, 0, 0, 0, 0, 0, 0];         
@@ -20,7 +31,7 @@ function ticTacToe ()
 		{                                            
 			cellClick(cellId, cell);           
 			var gameOver = 0;                     
-			gameOver = checkWin(gridx, " (Player 1)");
+			gameOver = checkWin(gridx, p1.value+" (Player 1)");
 			if(!gameOver) gameOver = checkWin(grido, " (Player 2)");
 			if(!gameOver) checkTie();                 
 		};
@@ -37,7 +48,7 @@ function ticTacToe ()
 			{                            //Checks if cell can be written to.
 				cell.innerHTML="x";
 				turn=0;              //It is now O's turn.
-				status("Turn : "+p1.value);
+				status("Turn : 2nd Player");
 				cell.unWritten=undefined;
 				gridx[cellId]=1;
 				grido[cellId]=0;
