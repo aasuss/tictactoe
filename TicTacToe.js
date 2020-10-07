@@ -3,10 +3,14 @@ function ticTacToe ()
 {
 	var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
+var btn = document.getElementById("enter");
   modal.style.display = "block";
 span.onclick = function() {
   modal.style.display = "none";
 }
+btn.onclick = function() {
+	modal.style.display = "none";
+  }
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -132,7 +136,7 @@ window.onclick = function(event) {
 		for(var i = 0; i<9; i++) 
 		{
 
-			document.getElementById(i.toString()).innerHTML="-";
+			document.getElementById(i.toString()).innerHTML="";
 		}
 	};
 };
