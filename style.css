@@ -66,32 +66,45 @@ body {
   font-size: 30px;
   font-weight: bold;
 }
-.inputname {
-  font-size: 30px;
-  color: black;
+
+.modal-head {
+  color: #666;
 }
-.nameBtn {
-  font-size: 30px;
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: rgb(0, 162, 226);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;}
-  
-  .nameBtn:hover {background-color: rgb(4, 91, 126)}
-  
-  .nameBtn:active {
-    background-color: rgb(4, 91, 126);
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
+.modal-input {
+  font-size: larger;
+  outline: none;
+  border: 1px solid rgb(13, 147, 224);
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 15px;
+  width: 95%;
+  color: rgb(100, 100, 100);
+}
+.modal-button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 15px;
+  margin: 15px 0px 15px 0px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: rgb(0, 162, 226);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.modal-button:hover {
+  background-color: rgb(4, 91, 126);
+}
+
+.modal-button:active {
+  background-color: rgb(4, 91, 126);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
 .close:hover,
 .close:focus {
@@ -99,41 +112,63 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
-body {font-family: Arial, Helvetica, sans-serif;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 .modal {
-display: none; /* Hidden by default */
-position: fixed; /* Stay in place */
-z-index: 1; /* Sit on top */
-padding-top: 120px; /* Location of the box */
-left: 0;
-top: 0;
-width: 100%; /* Full width */
-height: 100%; /* Full height */
-overflow: auto; /* Enable scroll if needed */
-background-color: rgb(0,0,0); /* Fallback color */
-background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 120px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 .modal-content {
-position: relative;
-background-color: #fefefe;
-margin: auto;
-padding: 0;
-border: 1px solid #888;
-width: 45%;
-box-shadow: 0 100px 800px 0 rgba(0,0,0,0.2),0 100px 25px 0 rgba(0,0,0,0.19);
--webkit-animation-name: animatetop;
--webkit-animation-duration: 0.4s;
-animation-name: animatetop;
-animation-duration: 0.8s
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 90%;
+  box-shadow: 0 100px 800px 0 rgba(0, 0, 0, 0.2),
+    0 100px 25px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.8s;
 }
+
+@media only screen and (min-width: 768px) {
+  .modal-content {
+    width: 45%;
+  }
+}
+
 @-webkit-keyframes animatetop {
-from {top:-300px; opacity:0} 
-to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 @keyframes animatetop {
-from {top:-300px; opacity:0}
-to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 .modal-header {
@@ -142,37 +177,40 @@ to {top:0; opacity:1}
   color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+  padding: 2px 16px;
+}
 
 .modal-footer {
   padding: 2px 16px;
   background-color: rgb(0, 141, 223);
   color: white;
 }
-.btn
-	{
-      display: inline-block;
-      padding: 10px 15px;
-      font-size: 24px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      outline: none;
-      color: #fff;
-      background-color: rgb(5, 113, 156);
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 9px #999;
-  }
-    .btn:hover {background-color: rgb(3, 48, 66)}
-    
-    .btn:active {
-      background-color: rgb(3, 48, 66);
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
-.editst{
-        font-size: 30px;
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: rgb(5, 113, 156);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.btn:hover {
+  background-color: rgb(3, 48, 66);
+}
+
+.btn:active {
+  background-color: rgb(3, 48, 66);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.editst {
+  font-size: 30px;
 }
 .tab {
   font-size: 35px;

@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
     <link rel="stylesheet" href="./style.css">
     <title>Tic Tac Toe</title>
 </head>
+
 <body>
     <div id="myModal" class="modal">
         <div class="modal-content">
-          <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2><p class="editn1">Hello </p></h2>
-          </div>
-          <div class="modal-body">
-              <pre class="tab">Name : <input type="text" class="inputname" id="p1" placeholder="Enter your name"> <button id="enter" class="nameBtn">ENTER</button></pre>
-          </div>
-          <div class="modal-footer">
-            <h3>ALL THE BEST!!</h3>
-          </div>
+            <div class="modal-header">
+                <!-- <span class="close">&times;</span> -->
+                <h2>
+                    <p class="editn1">Tic Tac Toe</p>
+                </h2>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <h4 class="modal-head">Your Name: </h4>
+                    <input type="text" class="modal-input inputname" id="username" placeholder="Enter your name">
+                    <hr>
+                    <!-- <p style="color: rgb(175, 175, 175)">or Join a game</p> -->
+
+                    <h4 class="modal-head">Game Code: </h4>
+                    <input type="text" class="modal-input inputname" id="gameroom" placeholder="Enter game code">
+
+                    <button id="startnew" class="modal-button nameBtn">Start Game</button>
+                    <button id="enterold" class="modal-button nameBtn">Enter</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <h3>ALL THE BEST!!</h3>
+            </div>
         </div>
-      
-      </div>
+    </div>
+
+
     <div class="nav">
     </div>
     <div class="container">
@@ -41,14 +58,15 @@
                 <div class="col" id="7"></div>
                 <div class="col" id="8"></div>
             </div>
-        <div class="features">
-            <p id="status" class="editst">Turn : </p>
-            <button id="reset" class="btn">Reset</button>
-        </div>
+            <div class="features">
+                <p id="status" class="editst">Turn : </p>
+                <!-- <button id="reset" class="btn">Reset</button> -->
+            </div>
         </div>
     </div>
-</div>
+    </div>
 </body>
 <script type="text/javascript" src="TicTacToe.js"></script>
+<script type="text/javascript" src="connection.js"></script>
 
 </html>
