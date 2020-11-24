@@ -3,6 +3,10 @@ function ticTacToe() {
   // Connection
   var gameConn = null;
 
+  var myturn = false
+  var myvalue = null
+
+
   // Initialization Modal
   var modal = document.getElementById("myModal");
   var usernameInput = document.getElementById("username");
@@ -13,10 +17,31 @@ function ticTacToe() {
 
   function onGetData(data) {
     console.log(data, " Log by Callback");
+    // data = JSON.parse(data)
+    myturn=true;
+    var cell = document.getElementById(data); 
+      if (cell.unWritten) 
+      {
+        //Checks if cell can be written to.
+        if(myvalue!="x")
+        {
+          cell.innerHTML = "x";
+          gridx[cellId]=1;
+        }
+        else
+        {
+          cell.innerHTML = "o";
+          grido[cellId]=1;
+        }
+        tieDetectorGrid[cellId] = 1;
+        gameConn.sendData(JSON.stringify(cellId)); 
+      }
   }
 
   startnewBtn.onclick = function () {
     if (usernameInput.value != "") {
+      myvalue = "x"
+      myturn=true
       modal.style.display = "none";
       gameConn = new GameConnection("TTT", usernameInput.value, null);
       gameConn.onData(onGetData);
@@ -25,6 +50,7 @@ function ticTacToe() {
 
   enteroldBtn.onclick = function () {
     if (usernameInput.value != "" && gameroomInput.value != "") {
+      myvalue = "o"
       modal.style.display = "none";
       gameConn = new GameConnection(
         "TTT",
@@ -35,8 +61,8 @@ function ticTacToe() {
     }
   };
 
+
   // Game Initialization
-  var turn = 1;
   var gridx = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   var grido = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   var tieDetectorGrid = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -50,7 +76,7 @@ function ticTacToe() {
     var cell = document.getElementById(cellId);
     cell.unWritten = 1;
     cell.onclick = function () {
-      cellClick(cellId, cell);
+      cellClick(cellId);
       var gameOver = 0;
       gameOver = checkWin(gridx, usernameInput.value + " (Player 1)");
       if (!gameOver) gameOver = checkWin(grido, " (Player 2)");
@@ -60,31 +86,53 @@ function ticTacToe() {
   for (var i = 0; i < 9; i++) {
     setCellProperties(i);
   }
-  function cellClick(cellId, cell) {
-    if (turn) {
-      gameConn.sendData(JSON.stringify({ cellId, cell }));
-      //Checks if X turn or not.
+  function cellClick(cellId)
+  {
+    var cell = document.getElementById(cellId); 
+    if(myturn)
+    {
       if (cell.unWritten) {
         //Checks if cell can be written to.
-        cell.innerHTML = "x";
-        turn = 0; //It is now O's turn.
-        status("Turn : 2nd Player");
-        cell.unWritten = undefined;
-        gridx[cellId] = 1;
-        grido[cellId] = 0;
+        cell.innerHTML = myvalue;
+        myturn = false; //It is now O's turn.
+        if(myvalue=="x")
+        {
+          gridx[cellId]=1;
+        }
+        else
+        {
+          grido[cellId]=1;
+        }
         tieDetectorGrid[cellId] = 1;
+        gameConn.sendData(JSON.stringify(cellId)); 
+        }
       }
-    } else if (cell.unWritten) {
-      //Checks if cell can be written to.
-      cell.innerHTML = "o";
-      turn = 1; //It is now X's turn.
-      // status("Turn : " + p1.value);
-      cell.unWritten = undefined;
-      grido[cellId] = 1;
-      gridx[cellId] = 0;
-      tieDetectorGrid[cellId] = 1;
     }
-  }
+  // function cellClick(cellId, cell) {
+  //   if (myturn) {
+  //     gameConn.sendData(JSON.stringify({ cellId, cell }));
+  //     //Checks if X turn or not.
+  //     if (cell.unWritten) {
+  //       //Checks if cell can be written to.
+  //       cell.innerHTML = "x";
+  //       turn = 0; //It is now O's turn.
+  //       status("Turn : 2nd Player");
+  //       cell.unWritten = undefined;
+  //       gridx[cellId] = 1;
+  //       grido[cellId] = 0;
+  //       tieDetectorGrid[cellId] = 1;
+  //     }
+  //   } else if (cell.unWritten) {
+  //     //Checks if cell can be written to.
+  //     cell.innerHTML = "o";
+  //     turn = 1; //It is now X's turn.
+  //     // status("Turn : " + p1.value);
+  //     cell.unWritten = undefined;
+  //     grido[cellId] = 1;
+  //     gridx[cellId] = 0;
+  //     tieDetectorGrid[cellId] = 1;
+  //   }
+  // }
 
   function checkWin(gridToCheck, who) {
     var gameOver = 0;
