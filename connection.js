@@ -2,7 +2,7 @@ class GameConnection {
   constructor(_gameCode, _username, _roomId) {
     this.url = "https://gulabjamun.herokuapp.com";
     if (!_roomId) {
-      this.roomId = makeid(7);
+      this.roomId = makeid(4);
     } else {
       this.roomId = _roomId;
     }
@@ -44,7 +44,7 @@ class GameConnection {
 function makeid(length) {
   var result = "";
   var characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    "ABCDEFGHJKMNPQRSTUVWXYZ123456789";
   var charactersLength = characters.length;
   for (var i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));

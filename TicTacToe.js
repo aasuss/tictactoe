@@ -2,7 +2,7 @@ window.onload = ticTacToe;
 function ticTacToe() {
   // Connection
   var gameConn = null;
-
+  var gamecodeDiv = document.getElementById("gamecode");
   var myturn = false
   var myvalue = null
 
@@ -45,6 +45,7 @@ function ticTacToe() {
       modal.style.display = "none";
       gameConn = new GameConnection("TTT", usernameInput.value, null);
       gameConn.onData(onGetData);
+      gamecodeDiv.innerHTML = gameConn.roomId;
     }
   };
 
